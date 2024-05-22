@@ -5,12 +5,14 @@
   "main": "src/index.js",
   "scripts": {
     "build": "tsc",
-    "scrape:links": "yarn build && node dist/src/links.js",
-    "scrape:characters": "yarn build && node dist/src/characters.js",
-    "scrape:saga": "yarn build && node dist/src/saga.js",
-    "scrape:arcs": "yarn build && node dist/src/arcs.js",
-    "scrape:clean": "yarn build && node dist/src/clean.js",
-    "scrape:haki": "yarn build && node dist/src/haki.js"
+    "scrape:links": "yarn build && node dist/database/src/links.js",
+    "scrape:characters": "yarn build && node dist/database/src/characters.js",
+    "scrape:saga": "yarn build && node dist/database/src/saga.js",
+    "scrape:arcs": "yarn build && node dist/database/src/arcs.js",
+    "scrape:haki": "yarn build && node dist/database/src/haki.js",
+    "clean": "yarn build && node dist/database/src/clean.js",
+    "stats": "yarn build && node dist/database/src/stats.js",
+    "model": "yarn build && node dist/database/src/model.js"
   },
   "keywords": [],
   "author": "",

@@ -2,7 +2,14 @@ import puppeteer, { ElementHandle } from "puppeteer";
 import { writeFileSync } from "fs";
 
 import characterLinks from "../data/charactersLinks.json";
-import { DevilFruit, DevilFruitType, OnePieceCharacter, Stats } from "./types";
+import maleCharacterNames from "../data/maleCharacterNames.json";
+
+import {
+  DevilFruit,
+  DevilFruitType,
+  OnePieceCharacter,
+  Stats,
+} from "../../types/onepiece.model";
 import {
   formatAffiliations,
   formatAge,
@@ -120,8 +127,8 @@ const scraperCharacters = async () => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
-  // const links = structuredClone(characterLinks).splice(110);
-  const links = [characterLinks[1120]]; // Sanji
+  const links = structuredClone(characterLinks).splice(860);
+  // const links = [characterLinks[22]]; // Alvida
 
   bar1.start(links.length, 0);
 
@@ -150,10 +157,24 @@ const scraperCharacters = async () => {
 
     const stats = await getStatisticsData(characterSections[0]);
 
+    console.log(characterName);
+    const isMale = maleCharacterNames.includes(characterName);
+
+    // search all the page for word "female"
+    const isFemale =
+      !isMale ||
+      (await page.evaluate(() => {
+        const text = document.body.innerText;
+        return text.includes("female");
+      }));
+
+    const gender = isMale ? "M" : isFemale ? "F" : "U";
+
     const character: OnePieceCharacter = {
       id: generateIdFromName(characterName),
       url: element,
       name: characterName,
+      gender,
       imageURL: imageURL ?? undefined,
       devilFruit,
       ...stats,

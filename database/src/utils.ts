@@ -1,6 +1,6 @@
 import databaseArcs from "../data/arcs.json";
 import databaseSagas from "../data/sagas.json";
-import { OnePieceArc, OnePieceSaga } from "./types";
+import { OnePieceArc, OnePieceSaga } from "../../types/onepiece.model";
 
 const archs = databaseArcs as OnePieceArc[];
 const sagas = databaseSagas as OnePieceSaga[];

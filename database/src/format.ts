@@ -58,10 +58,10 @@ export const formatOrigin = (origin?: string): string => {
  *
  * @param age string
  * @example '34 (debut)36 (after timeskip, at death)[5]' => 36
- * @returns number | undefined
+ * @returns number | 'unknown'
  */
-export const formatAge = (age?: string): number | undefined => {
-  if (!age) return undefined;
+export const formatAge = (age?: string): number | "unknown" => {
+  if (!age) return "unknown";
   return Number(
     age
       .replace(/\(.*?\)/g, "")
@@ -76,10 +76,10 @@ export const formatAge = (age?: string): number | undefined => {
  *
  * @param height
  * @example '174 cm (5'8½")[5]' => 174
- * @returns number | undefined
+ * @returns number | 'unknown
  */
-export const formatHeight = (height?: string): number | undefined => {
-  if (!height) return undefined;
+export const formatHeight = (height?: string): number | "unknown" => {
+  if (!height) return "unknown";
   return Number(height.split(" ")[0]);
 };
 
@@ -88,10 +88,10 @@ export const formatHeight = (height?: string): number | undefined => {
  *
  * @param bounty
  * @example '1,659,000,000[8]80,000,000[9]' => 1659000000
- * @returns number | undefined
+ * @returns number | 'unknown'
  */
-export const formatBounty = (bounty?: string): number | undefined => {
-  if (!bounty) return undefined;
+export const formatBounty = (bounty?: string): number | "unknown" => {
+  if (!bounty) return "unknown";
   const lastBounty = bounty.split("[")[0];
   return Number(lastBounty.replace(/,/g, ""));
 };
@@ -103,7 +103,7 @@ export const formatBounty = (bounty?: string): number | undefined => {
  * @returns
  */
 export const formatDevilFruitName = (name?: string): string => {
-  if (!name) return "Unknown";
+  if (!name) return "unknown";
   return name
     .replace(/\[.*?\]/g, "")
     .replace(/\(.*?\)/g, "")

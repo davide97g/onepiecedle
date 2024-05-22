@@ -26,8 +26,10 @@ const scraperLinks = async () => {
     charactersLinks.push(characterLink);
   }
 
+  const uniqueLinks = [...new Set(charactersLinks)];
+
   // save links to a file
-  writeFileSync("./data/charactersLinks.json", JSON.stringify(charactersLinks));
+  writeFileSync("./data/charactersLinks.json", JSON.stringify(uniqueLinks));
 
   await browser.close();
 };

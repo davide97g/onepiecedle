@@ -1,6 +1,6 @@
 import puppeteer, { ElementHandle, Page } from "puppeteer";
 import { writeFileSync } from "fs";
-import { OnePieceArc, OnePieceSaga, RangeStats } from "./types";
+import { OnePieceSaga, RangeStats } from "../../types/onepiece.model";
 import { generateIdFromName } from "./utils";
 import { formatChapters, formatEpisodes, formatVolumes } from "./format";
 

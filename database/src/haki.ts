@@ -1,6 +1,10 @@
 import puppeteer from "puppeteer";
 import { writeFileSync, readdirSync, readFileSync } from "fs";
-import { HakiColor, HakiUser, OnePieceCharacter } from "./types";
+import {
+  HakiColor,
+  HakiUser,
+  OnePieceCharacter,
+} from "../../types/onepiece.model";
 import { generateIdFromName } from "./utils";
 
 const URL = "https://onepiece.fandom.com/wiki/Haki";
