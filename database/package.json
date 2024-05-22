@@ -8,7 +8,9 @@
     "scrape:links": "yarn build && node dist/src/links.js",
     "scrape:characters": "yarn build && node dist/src/characters.js",
     "scrape:saga": "yarn build && node dist/src/saga.js",
-    "scrape:arcs": "yarn build && node dist/src/arcs.js"
+    "scrape:arcs": "yarn build && node dist/src/arcs.js",
+    "scrape:clean": "yarn build && node dist/src/clean.js",
+    "scrape:haki": "yarn build && node dist/src/haki.js"
   },
   "keywords": [],
   "author": "",

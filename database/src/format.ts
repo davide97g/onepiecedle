@@ -8,13 +8,21 @@ export const formatDebut = (
   debut: string
 ): {
   manga: number;
-  anime: number;
+  anime: number | undefined;
 } => {
-  const [manga, anime] = debut.replace(/\[.*?\]/g, "").split(";");
-  return {
-    manga: Number(manga.trim().split(" ")[1]),
-    anime: Number(anime.trim().split(" ")[1]),
-  };
+  try {
+    const [manga, anime] = debut.replace(/\[.*?\]/g, "").split(";");
+    return {
+      manga: Number(manga?.trim().split(" ")[1]),
+      anime: anime ? Number(anime?.trim().split(" ")[1]) : undefined,
+    };
+  } catch (e) {
+    console.log(e, debut);
+    return {
+      manga: 0,
+      anime: 0,
+    };
+  }
 };
 
 /**
@@ -75,6 +83,7 @@ export const formatHeight = (height?: string): number | undefined => {
   return Number(height.split(" ")[0]);
 };
 
+// TODO: add "Uknown" to the list
 /**
  *
  * @param bounty

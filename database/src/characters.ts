@@ -81,8 +81,6 @@ const getStatisticsData = async (
     };
   });
 
-  console.log(formattedData);
-
   const debutStats = formatDebut(
     formattedData.find((k) => k.key === "Debut")?.value!
   );
@@ -122,7 +120,8 @@ const scraperCharacters = async () => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
-  const links = structuredClone(characterLinks).splice(100, 10);
+  // const links = structuredClone(characterLinks).splice(110);
+  const links = [characterLinks[1120]]; // Sanji
 
   bar1.start(links.length, 0);
 
@@ -131,7 +130,7 @@ const scraperCharacters = async () => {
 
     // find first h1 element
     const characterName = await page.$eval("h1", (el) =>
-      el.textContent?.trim()
+      el.textContent?.trim().replace("/", "-")
     );
     if (!characterName) continue;
 
@@ -153,6 +152,7 @@ const scraperCharacters = async () => {
 
     const character: OnePieceCharacter = {
       id: generateIdFromName(characterName),
+      url: element,
       name: characterName,
       imageURL: imageURL ?? undefined,
       devilFruit,

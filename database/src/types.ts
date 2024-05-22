@@ -13,7 +13,7 @@ export interface Stats {
   japaneseName?: string;
   debut?: {
     manga: number;
-    anime: number;
+    anime?: number;
     arch: string;
     saga: string;
   };
@@ -30,8 +30,10 @@ export interface Stats {
 export interface OnePieceCharacter extends Stats {
   id: string;
   name: string;
+  url: string;
   imageURL?: string;
   devilFruit?: DevilFruit;
+  haki?: HakiColor[];
 }
 
 export interface RangeStats {
@@ -65,4 +67,12 @@ export interface OnePieceSaga extends RangeStats {
   imageURL?: string;
   order: number;
   arcLinkList: string[];
+}
+
+export type HakiColor = "Conqueror" | "Armament" | "Observation";
+
+export interface HakiUser {
+  userId: string;
+  name: string;
+  haki?: HakiColor[];
 }
